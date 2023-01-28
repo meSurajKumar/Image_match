@@ -3,16 +3,11 @@ import numpy as np
 import os
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
-
 def findTargetPosition(targetImagePath,originalImage , threshold=0.30 , markers_options = None):
-
-    
     temp_image = cv.imread(targetImagePath,cv.IMREAD_UNCHANGED)
     method = cv.TM_CCOEFF_NORMED
-
     ## Finding this image in original image.....
     result = cv.matchTemplate(originalImage,temp_image,method)
-    cv.imshow('RESULT ::' , result)
     min_val , max_val , min_loc , max_loc = cv.minMaxLoc(result)
 
     temp_img_w = temp_image.shape[1]
